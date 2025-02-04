@@ -1,0 +1,48 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{calc}
+\usepackage{isabelle,isabellesym}
+\usepackage{unicode-math}
+%\usepackage{graphicx}
+%\usepackage{latexsym}
+%\usepackage{textcomp}
+
+% this should be the last package used
+\usepackage{pdfsetup}
+
+% urls in roman style, theory text in math-similar italics
+\urlstyle{rm}
+\isabellestyle{it}
+
+% index
+\newcommand{\indexed}[2]{#1\index{#2@\protect#1}}
+
+% isabelle in-text command font
+\newcommand{\isacom}[1]{\isa{\isacommand{#1}}}
+
+\begin{document}
+
+\title{\vspace{-2cm}Event-B Modeling in Isabelle/HOL}
+\date{\vspace{-5ex}}
+%\author{Basil F\"urer}
+\maketitle
+
+%\tableofcontents
+
+% sane default for proof documents
+\parindent 0pt\parskip 0.5ex
+
+% generated text of all theories
+\input{session}
+
+% bibliography
+\bibliographystyle{abbrv}
+\bibliography{root}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

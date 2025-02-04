@@ -1,0 +1,6 @@
+[submodule "igloo-isabelle"]
+	path = igloo-isabelle
+	url = git@github.com:b4er/igloo-isabelle.git
+[submodule "mirror-afp-2023"]
+	path = mirror-afp-2023
+	url = git@github.com:isabelle-prover/mirror-afp-2023.git

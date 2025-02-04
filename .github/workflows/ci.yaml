@@ -1,0 +1,62 @@
+name: Event-B - CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+  push:
+    branches:
+      - main
+
+env:
+  isabelle-tar: https://isabelle.in.tum.de/website-Isabelle2023/dist/Isabelle2023_linux.tar.gz
+
+concurrency:
+  group: eventb-ci-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Check Proofs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with: { submodules: 'true' }
+
+      - name: Setup Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y --fix-missing texlive-full
+
+      - name: Cache Isabelle
+        id: cache-tar
+        uses: actions/cache@v4
+        with:
+          path: Isabelle_linux.tar.gz
+          key: ${{env.isabelle-tar}}
+          restore-keys: ${{env.isabelle-tar}}
+
+      - if: ${{steps.cache-tar.outputs.cache-hit != 'true'}}
+        name: Download Isabelle
+        run: curl ${{env.isabelle-tar}} -o Isabelle_linux.tar.gz
+
+      - name: Unpack & Add to PATH
+        run: |
+          tar xfz Isabelle_linux.tar.gz
+          rm Isabelle_linux.tar.gz
+          echo "$(readlink -f -- ./Isabelle*)/bin" >> "$GITHUB_PATH"
+
+      - name: Run the Proofs
+        run: isabelle build -d . EventB
+
+      - name: Upload Documents
+        uses: actions/upload-artifact@v4
+        with:
+          name: documents
+          path: generated/*.pdf
