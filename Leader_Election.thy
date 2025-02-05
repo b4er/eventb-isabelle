@@ -12,7 +12,7 @@ text \<open>\newpage\<close>
 section \<open>Example: Leader Election\<close>
 
 text \<open>This chapter compares the running example of the Leader Election using the newly
-defined command. The goal is to highlight, how the command is able to automate model definitions
+defined command. The goal is to highlight how the command is able to automate model definitions
 and goal construction. The user can focus on the interesting bits, no auxiliary constructions
 and lemmas are necessary.\<close>
 
@@ -32,8 +32,8 @@ thm election0.no_multiple_leaders
 
 subsubsection \<open>Satisfiability\<close>
 
-text \<open>It easy to define non-sensical locales in Isabelle and the standard way to show that a locale
-is not non-sensical is to show that there is at least one inhabitant.
+text \<open>It is easy to define non-sensical locales in Isabelle and the standard way to show that a
+locale is not non-sensical is to show that there is at least one inhabitant.
 
 Indeed, the locale has a trivial inhabitant:\<close>
 

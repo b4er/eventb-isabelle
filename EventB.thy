@@ -149,7 +149,7 @@ lemma
   subgoal premises ps
     using ps
 (*>*)
-text\<open>The additional proof obligations will become:
+text\<open>The additional proof obligations are (assumptions omitted):
 @{subgoals[display]}\<close>
 (*<*)
   oops
